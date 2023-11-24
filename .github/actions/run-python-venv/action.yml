@@ -1,0 +1,28 @@
+name: 'Run Python in Venv'
+description: 'Create a new Python Venv with specified dependecies and run commands'
+author: 'Samuel Quesne'
+
+inputs:
+  python-version:
+    description: 'Python version'
+    required: true
+  requirement-file:
+    description: 'Path to the pip requirements file'
+    required: false
+    default: ''
+  constraints-file:
+    description: 'Path to the pip package contraints file'
+    required: false
+    default: ''
+  requirements:
+    description: 'Package version to be installed in the venv'
+    required: false
+    default: ''
+  contraints:
+    description: 'Constraints on individual package versions'
+    required: false
+    default: ''
+  run:
+    description: 'Shell commands to run after setup'
+    required: true
+    default: ''
