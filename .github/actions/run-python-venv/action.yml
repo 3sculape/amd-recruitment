@@ -9,20 +9,41 @@ inputs:
   requirement-file:
     description: 'Path to the pip requirements file'
     required: false
-    default: ''
   constraints-file:
     description: 'Path to the pip package contraints file'
     required: false
-    default: ''
   requirements:
     description: 'Package version to be installed in the venv'
     required: false
-    default: ''
   contraints:
     description: 'Constraints on individual package versions'
     required: false
-    default: ''
   run:
     description: 'Shell commands to run after setup'
     required: true
-    default: ''
+
+
+runs:
+  using: 'composite'
+  steps:
+    - name: 'Setup Python'
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ inputs.python-version }}
+    
+    - name: 'Setup Venv'
+      run: python -m venv venv
+
+    - name: 'Install Dependencies'
+      run: |
+        source venv/bin/activate
+        pip install -r ${{ inputs.requirements-file }}
+        pip install -c ${{ inputs.constraints-file }}
+        pip install ${{ inputs.requirements }}
+        pip install ${{ inputs.constraints }}
+        deactivate
+    - name: 'Run Shell commands with Venv'
+      run: |
+        source venv/bin/activate
+        ${{ inputs.run }}
+        deactivate
