@@ -7,6 +7,8 @@ def update_checkbox(token, repo_name, pr_number):
     g = Github(token)
 
     # Get the repository
+    print(repo_name)
+    print(pr_number)
     repo = g.get_repo(repo_name)
 
     # Get the pull request
