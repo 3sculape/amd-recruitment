@@ -43,7 +43,7 @@ runs:
         pip install -c ${{ inputs.constraints-file }}
         deactivate
     
-   - name: 'Setup Constraints'
+    - name: 'Setup Constraints'
       if: "${{ inputs.constraints != '' }}"
       shell: bash
       run: |
