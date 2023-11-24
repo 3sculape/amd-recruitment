@@ -1,4 +1,4 @@
-me: 'Update Checkbox on PR Merge'
+name: 'Update Checkbox on PR Merge'
 
 on:
   pull_request:
