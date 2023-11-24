@@ -15,7 +15,7 @@ inputs:
   requirements:
     description: 'Package version to be installed in the venv'
     required: false
-  contraints:
+  constraints:
     description: 'Constraints on individual package versions'
     required: false
   run:
