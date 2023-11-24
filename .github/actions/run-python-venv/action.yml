@@ -39,8 +39,7 @@ runs:
       shell: bash
       run: |
         source venv/bin/activate
-        ls -la
-       ./.github/actions/run-python-venv/install-script.sh "${{ inputs.requirements-file}}" "${{ inputs.requirements }}" "${{ inputs.constraints-file }}" "${{ inputs.constraints }}"
+        ./.github/actions/run-python-venv/install-script.sh "${{ inputs.requirements-file}}" "${{ inputs.requirements }}" "${{ inputs.constraints-file }}" "${{ inputs.constraints }}"
         deactivate
 
     - name: 'Run Shell commands with Venv'
