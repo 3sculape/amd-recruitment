@@ -18,8 +18,6 @@ jobs:
         env:
           REPO_NAME: "${{ github.repository }}"
           PR_NUMBER: "${{ github.event.number }}"
-        permissions:
-          pull-requests: write
         with:
           python-version: '3.10'
           requirements: 'PyGithub==1.58'
