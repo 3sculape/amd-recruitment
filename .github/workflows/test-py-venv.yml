@@ -1,0 +1,19 @@
+name: 'Example Workflow'
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Setup python venv and dependencies'
+        uses: ./.github/actions/run-python-venv
+        with:
+          python-version: '3.10'
+          requirements: 'numpy==1.0.0 scypy>=1.0.0'
+          run: |
+            python3.8 test-script.py
