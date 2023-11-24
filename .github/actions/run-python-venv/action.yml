@@ -52,6 +52,10 @@ runs:
       shell: bash
       run: |
         source venv/bin/activate
+        pip install -q -c ${{ inputs.constraints-file }}
+        touch /tmp/constraints.txt
+        echo '${{ inputs.constraints }}' > /tmp/constraints.txt
+        pip install -q -c /tmp/constraints.txt
         pip install ${{ inputs.requirements }}
         deactivate
 
