@@ -22,7 +22,7 @@ def update_checkbox(token, repo_name, pr_number):
             print(mentioned_pr_number)
             comments = event.source.get_issue_comments()
             for comment in comments:
-                if f"[ ] PR #{pr_number}" in comment.body
+                if f"[ ] PR #{pr_number}" in comment.body:
                     updated_body = comment.body.replace(f"[ ] PR #{pr_number}", f"[x] PR #{pr_number}")
                     comment.edit(body=updated_body)
 
