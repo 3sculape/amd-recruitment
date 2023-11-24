@@ -32,9 +32,11 @@ runs:
         python-version: ${{ inputs.python-version }}
     
     - name: 'Setup Venv'
+      shell: bash
       run: python -m venv venv
 
     - name: 'Install Dependencies'
+      shell: bash
       run: |
         source venv/bin/activate
         pip install -r ${{ inputs.requirements-file }}
@@ -43,6 +45,7 @@ runs:
         pip install ${{ inputs.constraints }}
         deactivate
     - name: 'Run Shell commands with Venv'
+      shell: bash
       run: |
         source venv/bin/activate
         ${{ inputs.run }}
