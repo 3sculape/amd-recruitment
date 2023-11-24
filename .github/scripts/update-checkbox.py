@@ -24,12 +24,13 @@ def update_checkbox(token, repo_name, pr_number):
         matches = pr_mention_pattern.findall(comment.body)
         for match in matches:
             mentioned_pr_number = int(match)
+            print(mentioned_pr_number)
 
             # Check if the mentioned pull request is closed
             mentioned_pr = repo.get_pull(mentioned_pr_number)
             if mentioned_pr.state == 'closed':
                 # Update the original comment with a checked checkbox
-                updated_body = comment.body.replace(f"[ ] PR #{mentioned_pr_number}", f"[x] PR #{mentioned_pr_number}")
+                updated_body = comment.body.replace(f"[ ] PR #{pr_number}", f"[x] PR #{pr_number}")
                 comment.edit(body=updated_body)
 
 if __name__ == "__main__":
