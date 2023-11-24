@@ -35,7 +35,7 @@ def update_checkbox(token, repo_name, pr_number):
                 comment.edit(body=updated_body)
 
 if __name__ == "__main__":
-    repo_name = os.getenv('GITHUB_ACTION_REPOSITORY')
+    repo_name = os.getenv('REPO_NAME')
     pr_number = os.getenv('PR_NUMBER')
     token = os.getenv('GITHUB_TOKEN')
 
