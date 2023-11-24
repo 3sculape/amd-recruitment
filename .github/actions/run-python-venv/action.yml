@@ -35,15 +35,30 @@ runs:
       shell: bash
       run: python -m venv venv
 
-    - name: 'Install Dependencies'
+    - name: 'Install Dependecies from Requirements file'
+      if: "${{ inputs.requirements-file != '' }}"
       shell: bash
       run: |
         source venv/bin/activate
         pip install -r ${{ inputs.requirements-file }}
-        pip install -c ${{ inputs.constraints-file }}
-        pip install ${{ inputs.requirements }}
-        pip install ${{ inputs.constraints }}
         deactivate
+
+    - name: 'Install Dependencies from Constraints file'
+      if: "${{ inputs.constraints-file != '' }}"
+      shell: bash
+      run: |
+        source venv/bin/activate
+        pip install -c ${{ inputs.constraints-file }}
+        deactivate
+
+    - name: 'Install Dependecies'
+      if: "${{ inputs.requirements != '' || inputs.constraints != '' }}"
+      shell: bash
+      run: |
+        source venv/bin/activate
+        pip install ${{ inputs.requirements }} ${{ inputs.constraints }}
+        deactivate
+
     - name: 'Run Shell commands with Venv'
       shell: bash
       run: |
