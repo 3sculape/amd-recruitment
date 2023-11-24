@@ -1,4 +1,4 @@
-from scipy.fft import fft
+from scipy.fft import fft, fftfreq
 import numpy as np
 
 # Number of sample points
