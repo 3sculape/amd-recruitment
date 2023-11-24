@@ -14,7 +14,7 @@ fi
 
 if [ -n "$1" ]
 then
-  pip install -c /tmp/constraints.txt -r "$1" "$2"
+  pip install -c /tmp/constraints.txt -r "$1" $2
 else
-  pip install -c /tmp/constraints.txt "$2"
+  pip install -c /tmp/constraints.txt $2
 fi
