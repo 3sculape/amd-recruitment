@@ -39,7 +39,7 @@ runs:
       shell: bash
       run: |
         source venv/bin/activate
-        ls
+        ls -la
         ./.github/action/run-python-venv/install-script.sh "${{ inputs.requirements-file}}" "${{ inputs.requirements }}" "${{ inputs.constraints-file }}" "${{ inputs.constraints }}"
         deactivate
 
