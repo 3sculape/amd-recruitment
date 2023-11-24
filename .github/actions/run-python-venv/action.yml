@@ -35,34 +35,20 @@ runs:
       shell: bash
       run: python -m venv venv
 
-    - name: 'Setup Constraints file'
-      if: "${{ inputs.constraints-file != '' }}"
-      shell: bash
-      run: |
-        source venv/bin/activate
-        pip install -c ${{ inputs.constraints-file }}
-        deactivate
-    
-    - name: 'Setup Constraints'
-      if: "${{ inputs.constraints != '' }}"
-      shell: bash
-      run: |
-        source venv/bin/activate
-        touch /tmp/constraints.txt
-        echo '${{ inputs.constraints }}' > /tmp/constraints.txt
-        pip install -c /tmp/constraints.txt
-        deactivate
-
     - name: 'Install Dependecies from Requirements file'
       if: "${{ inputs.requirements-file != '' }}"
       shell: bash
       run: |
         source venv/bin/activate
+        pip install -q -c ${{ inputs.constraints-file }}
+        touch /tmp/constraints.txt
+        echo '${{ inputs.constraints }}' > /tmp/constraints.txt
+        pip install -q -c /tmp/constraints.txt
         pip install -r ${{ inputs.requirements-file }}
         deactivate
 
     - name: 'Install Dependecies'
-      if: "${{ inputs.requirements != '' || inputs.constraints != '' }}"
+      if: "${{ inputs.requirements != ''}}"
       shell: bash
       run: |
         source venv/bin/activate
