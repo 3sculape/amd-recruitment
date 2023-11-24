@@ -18,8 +18,7 @@ def update_checkbox(token, repo_name, pr_number):
     # Loop through the comments
     for event in events:
         if event.event == "cross-referenced":
-            mentioned_pr_number = event.source.number
-            print(mentioned_pr_number)
+            mentioned_pr = event.source.issue()
             comments = event.source.get_issue_comments()
             for comment in comments:
                 if f"[ ] PR #{pr_number}" in comment.body:
