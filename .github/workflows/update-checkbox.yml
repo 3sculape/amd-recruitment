@@ -8,7 +8,9 @@ on:
 jobs:
   update-checkbox:
     runs-on: ubuntu-22.04
-
+    permissions:
+      issues: write
+      pull-request: write
     steps:
       - name: 'Checkout Repository'
         uses: actions/checkout@v4
